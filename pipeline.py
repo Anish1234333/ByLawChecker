@@ -1,4 +1,6 @@
 """Shared logic for BylawCheck-Lite: index loading, the two LangGraph graphs, run_ask(), run_report()."""
+import truststore
+truststore.inject_into_ssl()
 import os
 from functools import lru_cache
 from typing import TypedDict
@@ -11,7 +13,7 @@ from langgraph.graph import END, StateGraph
 HERE = os.path.dirname(os.path.abspath(__file__))
 INDEX_DIR = os.path.join(HERE, "index")
 EMBED_MODEL = "BAAI/bge-small-en-v1.5"       # 512-token window, fits ~500-token chunks
-GROQ_MODEL = "llama-3.3-70b-versatile"       # swap the model here (see get_llm)
+GROQ_MODEL = "openai/gpt-oss-120b"       # swap the model here (see get_llm)
 ABSTAIN_THRESHOLD = 0.65                     # FAISS L2 distance on normalised bge vectors; higher = less similar
 REFUSAL = "I can't find this in the provided regulations."
 DISCLAIMER = "*Pre-check only. Confirm with the municipal authority or an architect.*"

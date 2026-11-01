@@ -202,9 +202,8 @@ def quick_check():
             if res:
                 render_answer(res)
         if res:
-            ss.msgs += [{"role": "user", "content": q}, {"role": "assistant", "content": res["answer"],
+            ss.msgs += [{"role": "user", "content": q}, {"role": "assistant", "answer": res["answer"],
                                                          "sources": res["sources"], "abstained": res["abstained"]}]
-
 
 def split_rating(md):
     first, _, rest = md.strip().partition("\n")
